@@ -12,7 +12,27 @@ code. Test as you go!
 #mason lui
 #sept 22
 
-print("helo welom to banan store one banan is 79 cents yum yunm give me money")
-banan = int(input("how many banana?))
+print("CALCULATOR RUNNING SUCCESSFULLY")
+print("ENTER FIRST NUMBER")
+num1 = int(input())
 
-print(banan*79)
+print("ENTER OPERATOR")
+operator = input()
+
+print("ENTER SECOND NUMBER")
+num2 = int(input())
+
+if operator == '+':
+  print('YOUR ANSWER IS '+str(num1 + num2))
+
+elif operator == '-':
+  print('YOUR ANSWER IS '+str(num1 - num2))
+
+elif operator == '*':
+  print('YOUR ANSWER IS '+str(num1 * num2))
+
+elif operator == '/':
+  print('YOUR ANSWER IS '+str(num1 / num2))
+
+else:
+  print("SYNTAX ERROR")
