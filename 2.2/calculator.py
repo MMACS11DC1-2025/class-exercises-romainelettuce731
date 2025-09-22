@@ -14,13 +14,13 @@ code. Test as you go!
 
 print("CALCULATOR RUNNING SUCCESSFULLY")
 print("ENTER FIRST NUMBER")
-num1 = int(input())
+num1 = float(input())
 
 print("ENTER OPERATOR")
 operator = input()
 
 print("ENTER SECOND NUMBER")
-num2 = int(input())
+num2 = float(input())
 
 if operator == '+':
   print('YOUR ANSWER IS '+str(num1 + num2))
