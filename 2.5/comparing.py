@@ -103,6 +103,15 @@ if commonmovie == "yes":
 
 elif commonmovie == 'no':
     print("That's too bad.")
-print("Let's compare some results!")
-print(str(similarsubj)+" people also enjoy "+userfav[4]+".")
-print(" and "+str(similarmovie)+"people also enjoy"+userfav[8]+".")
+
+#Show user individual results and total amount of potential friends.
+print("Let's compare some results! \n\n\n")
+
+if similarsubj > 0:
+    print(str(similarsubj)+" people also enjoy "+userfav[4]+".")
+else: print("You never let me find how many people also enjoy "+userfav[4]+". :(")
+
+print(str(similarmovie)+" people also enjoy "+userfav[8]+".")
+
+print("That's "+str(similarsubj + similarmovie)+" new people that you could be friends with!")
+
