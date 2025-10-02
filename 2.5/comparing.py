@@ -31,7 +31,7 @@ for line in file:
 
 #add error later
 
-#Find favourite subject, ask if user wants to see people with same favourite subject
+#Find favourite movie, ask if user wants to see people with same favourite movie
 print("It appears that you enjoy "+userfav[4]+". Would you like to see ")
 print("people who also enjoy "+userfav[4]+"?")
 
@@ -42,10 +42,10 @@ if commonmovie == "yes":
     file = open("2.4/responses.csv")
     for line in file:
         if str(userfav[4]).lower() in line.lower():
-            similarmovie += 1
+            similarsubj += 1
 
-    #Ask if they want to see all the people with the same favourite movie
-    print("Wow! "+str(similarmovie - 1)+" other people also like "+userfav[4]+"!")
+    #Ask if they want to see all the people with the same favourite subject
+    print("Wow! "+str(similarsubj - 1)+" other people also like "+userfav[4]+"!")
     print("Would you like to see who they are?")
 
     #If this is yes, go through the loop again but this time, print the peoples names
@@ -69,6 +69,7 @@ if commonmovie == "yes":
 
 
 elif commonmovie == 'no':
+    similarsubj -= 1
     print("That's too bad.")
 print("Let's see where else we can find common interests!")
 
@@ -78,10 +79,10 @@ if commonmovie == "yes":
     file = open("2.4/responses.csv")
     for line in file:
         if str(userfav[8]).lower() in line.lower():
-            similarsubj += 1
+            similarmovie += 1
 
-    #Ask if they want to see all the people with the same favourite subject
-    print("Wow! "+str(similarsubj - 1)+" other people also like "+userfav[8]+"!")
+    #Ask if they want to see all the people with the same favourite movie
+    print("Wow! "+str(similarmovie - 1)+" other people also like "+userfav[8]+"!")
     print("Would you like to see who they are?")
 
     #If this is yes, go through the loop again but this time, print the peoples names
@@ -102,16 +103,33 @@ if commonmovie == "yes":
         print("You won't get to know them well!")
 
 elif commonmovie == 'no':
+    similarmovie -= 1
     print("That's too bad.")
 
 #Show user individual results and total amount of potential friends.
 print("Let's compare some results! \n\n\n")
 
+#Remove self from other user count
 if similarsubj > 0:
+    similarsubj -= 1
+if similarmovie > 0:
+    similarmovie -= 1
+
+
+#Tally scores, if score is set to negative, reset score to 0 for adding purposes,
+#reply sadly :(
+if similarsubj >= 0:
     print(str(similarsubj)+" people also enjoy "+userfav[4]+".")
-else: print("You never let me find how many people also enjoy "+userfav[4]+". :(")
+else: 
+    print("You never let me find how many people also enjoy "+userfav[4]+". :(")
+    similarsubj = 0
 
-print(str(similarmovie)+" people also enjoy "+userfav[8]+".")
+if similarmovie >= 0:
+    print(str(similarmovie)+" people also enjoy "+userfav[8]+".")
+else: 
+    print("You never let me find how many people also enjoy "+userfav[8]+". :(")
+    similarmovie = 0
 
-print("That's "+str(similarsubj + similarmovie)+" new people that you could be friends with!")
+if (similarmovie+similarsubj) >= 0:
+    print("That's "+str(similarsubj + similarmovie)+" new people that you could be friends with!")
 
