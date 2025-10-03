@@ -10,10 +10,24 @@ Test as you go! Describe in your comments what steps you took to test your code.
 Reccomendation bot that suggests people with similar interests you may want to be
 friends with
 
+>Grab user data
+
+>Ask if they would like to see people who enjoy the same subjects
+    >If this is yes, grab all user data and add 1 to counter for each person who enjoys the same subject
+    >Ask if they want to see people's names
+        >If this is yes, go through the loop again but print the names of the people who enjoy the same subject
+        >If this is no, skip ahead
+    >If this is no, skip ahead
+
+>Repeat the above process but for favourite movies
+
+>Tally all the scores together to provide total number of potential new friends
+>Provide both individual counter results for a comparison between the two.
+
 """
 #Initialize variables
 similarsubj = 0
-similarmovie =0
+similarmovie = 0
 
 
 #Open the file
@@ -28,50 +42,53 @@ for line in file:
     if user in line.lower():
         userfav = line.split(",")
         print("Hello, "+ userfav[1]+". \n")
+        break
 
-#add error later
-
-#Find favourite movie, ask if user wants to see people with same favourite movie
+#Find favourite subject, ask if user wants to see people with same favourite subject
 print("It appears that you enjoy "+userfav[4]+". Would you like to see ")
 print("people who also enjoy "+userfav[4]+"?")
 
 
-#Find people with same movie as favourite, if this is true, add one to counter
-commonmovie = input("(Reply with yes or no) \n\n").lower()
-if commonmovie == "yes":
+#Find people with same subject as favourite, if this is true, add one to counter
+commonsubj = input("(Reply with yes or no) \n\n").lower()
+if commonsubj == "yes":
     file = open("2.4/responses.csv")
     for line in file:
         if str(userfav[4]).lower() in line.lower():
             similarsubj += 1
 
-    #Ask if they want to see all the people with the same favourite subject
-    print("Wow! "+str(similarsubj - 1)+" other people also like "+userfav[4]+"!")
-    print("Would you like to see who they are?")
+     #If amount of people greater than 0 (1 subtracted by self) enjoys same subject
+    if similarsubj > 1:
+        
+        #Ask if they want to see all the people with the same favourite subject
+        print("Wow! "+str(similarsubj - 1)+" other people also like "+userfav[4]+"!")
+        print("Would you like to see who they are?")
 
-    #If this is yes, go through the loop again but this time, print the peoples names
-    whomovie = input("(Reply with yes or no) \n\n").lower()
-    if whomovie == 'yes':
-        file = open("2.4/responses.csv")
-        for line in file:
-            if str(userfav[4]).lower() in line.lower():
-                maybefriend = line.split(',')
-                if maybefriend[1] == userfav[1]:
-                    #do nothing lol
-                    print()
-                else:
-                    print(maybefriend[1])
-        print("You might get along well with them!")
-
-
-        #If this is no, continue on
-    elif whomovie == 'no':
-        print("That's no good! You'll never know who they are :(")
+        #If this is yes, go through the loop again but this time, print the peoples names
+        whosubj = input("(Reply with yes or no) \n\n").lower()
+        if whosubj == 'yes':
+            file = open("2.4/responses.csv")
+            for line in file:
+                if str(userfav[4]).lower() in line.lower():
+                    maybefriend = line.split(',')
+                    if maybefriend[1] == userfav[1]:
+                        #If you are your own friend, don't print your own name
+                        print()
+                    else:
+                        print(maybefriend[1])
+            print("\nYou might get along well with them!")
 
 
-elif commonmovie == 'no':
+            #If this is no, continue on
+        elif whosubj == 'no':
+            print("That's no good! You'll never know who they are :(")
+    elif similarmovie <= 1:
+        print("Nobody else seems to enjoy "+ userfav[4]+" :(")
+
+elif commonsubj == 'no':
     similarsubj -= 1
     print("That's too bad.")
-print("Let's see where else we can find common interests!")
+print("Let's see where else we can find common interests!\n")
 
 print("You also seem to enjoy "+userfav[8]+" movies! Do you want to see who else likes "+userfav[8]+" movies?")
 commonmovie = input("(Reply with yes or no) \n\n").lower()
@@ -81,26 +98,31 @@ if commonmovie == "yes":
         if str(userfav[8]).lower() in line.lower():
             similarmovie += 1
 
-    #Ask if they want to see all the people with the same favourite movie
-    print("Wow! "+str(similarmovie - 1)+" other people also like "+userfav[8]+"!")
-    print("Would you like to see who they are?")
+    #If amount of people greater than 0 (1 subtracted by self) enjoys same movie
+    if similarmovie > 1:
+        #Ask if they want to see all the people with the same favourite movie
+        print("Wow! "+str(similarmovie - 1)+" other people also like "+userfav[8]+"!")
+        print("Would you like to see who they are?")
 
-    #If this is yes, go through the loop again but this time, print the peoples names
-    whosubj = input("(Reply with yes or no) \n\n").lower()
-    if whosubj == 'yes':
-        file = open("2.4/responses.csv")
-        for line in file:
-            if str(userfav[8]).lower() in line.lower():
-                maybefriend2 = line.split(',')
-                if maybefriend2[1] == userfav[1]:
-                    #do nothing lol
-                    print()
-                else:
-                    print(maybefriend2[1])
-        print("You might get along well with them!")
 
-    elif whomovie == 'no':
-        print("You won't get to know them well!")
+        #If this is yes, go through the loop again but this time, print the peoples names
+        whomovie = input("(Reply with yes or no) \n\n").lower()
+        if whomovie == 'yes':
+            file = open("2.4/responses.csv")
+            for line in file:
+                if str(userfav[8]).lower() in line.lower():
+                    maybefriend2 = line.split(',')
+                    if maybefriend2[1] == userfav[1]:
+                        #If you are your own friend, don't print your own name
+                        print()
+                    else:
+                        print(maybefriend2[1])
+            print("\nYou might get along well with them!")
+
+        elif whomovie == 'no':
+            print("You won't get to know them well!")
+    elif similarmovie <= 1:
+        print("Nobody else seems to enjoy "+ userfav[8]+" movies :(")
 
 elif commonmovie == 'no':
     similarmovie -= 1
