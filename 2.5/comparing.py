@@ -41,8 +41,9 @@ for line in file:
     else:
         usernotindatabase += 1
 
-print(usernotindatabase)
 
+#If the counter extends past Brendan (27), user is determined
+#to not be in the database, end program so user may try again
 if usernotindatabase >= 28:
     quit("I'm sorry, I couldn't find your name in the database. Please try again.")
     
