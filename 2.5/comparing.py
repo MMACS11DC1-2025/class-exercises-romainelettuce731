@@ -10,24 +10,19 @@ Test as you go! Describe in your comments what steps you took to test your code.
 Reccomendation bot that suggests people with similar interests you may want to be
 friends with
 
->Grab user data
+Example: Ask the user if they would like to see people with similar interests
+If they say yes, display a counter and ask if they want to see specific names
+If this is no, do not add to counter and skip ahead
 
->Ask if they would like to see people who enjoy the same subjects
-    >If this is yes, grab all user data and add 1 to counter for each person who enjoys the same subject
-    >Ask if they want to see people's names
-        >If this is yes, go through the loop again but print the names of the people who enjoy the same subject
-        >If this is no, skip ahead
-    >If this is no, skip ahead
-
->Repeat the above process but for favourite movies
-
->Tally all the scores together to provide total number of potential new friends
->Provide both individual counter results for a comparison between the two.
+If the response is invalid, provide error message and continue forwards.
+If username is not in database, provide error and quit program
 
 """
 #Initialize variables
 similarsubj = 0
 similarmovie = 0
+
+usernotindatabase = 0
 
 
 #Open the file
@@ -43,6 +38,14 @@ for line in file:
         userfav = line.split(",")
         print("Hello, "+ userfav[1]+". \n")
         break
+    else:
+        usernotindatabase += 1
+
+print(usernotindatabase)
+
+if usernotindatabase >= 28:
+    quit("I'm sorry, I couldn't find your name in the database. Please try again.")
+    
 
 #Find favourite subject, ask if user wants to see people with same favourite subject
 print("It appears that you enjoy "+userfav[4]+". Would you like to see ")
@@ -82,12 +85,16 @@ if commonsubj == "yes":
             #If this is no, continue on
         elif whosubj == 'no':
             print("That's no good! You'll never know who they are :(")
-    elif similarmovie <= 1:
+    elif similarsubj <= 1:
         print("Nobody else seems to enjoy "+ userfav[4]+" :(")
 
 elif commonsubj == 'no':
     similarsubj -= 1
     print("That's too bad.")
+
+else:
+    print("I'm sorry, but I didn't understand what you said. Let's move forwards.")
+    similarmovie -= 1
 print("Let's see where else we can find common interests!\n")
 
 print("You also seem to enjoy "+userfav[8]+" movies! Do you want to see who else likes "+userfav[8]+" movies?")
@@ -127,6 +134,9 @@ if commonmovie == "yes":
 elif commonmovie == 'no':
     similarmovie -= 1
     print("That's too bad.")
+else:
+    print("I'm sorry, but I didn't understand what you said. Let's move forwards.")
+    similarmovie -= 1
 
 #Show user individual results and total amount of potential friends.
 print("Let's compare some results! \n\n\n")
