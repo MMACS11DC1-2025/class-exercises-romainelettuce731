@@ -1,4 +1,5 @@
 """
+<<<<<<< HEAD
 Create a program that uses comparison operators (< > <= >=).
 You must use the class' datafile, 'responses.csv' and analyze it
     to make at least 2 interesting observations.

@@ -1,4 +1,5 @@
 file = open("2.4/responses.csv")
+<<<<<<< HEAD
 count = 0
 cat = 0
 for line in file:
@@ -13,3 +14,5 @@ for line in file:
 print(str(cat)+ " people like cats.")
 
     
+=======
+>>>>>>> upstream/HEAD
