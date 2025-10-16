@@ -8,20 +8,23 @@ import turtle
 turty = turtle.Turtle()
 
 turty.speed(0)
-size = input("How big do you want your smiley saw to be?")
-size = int(size)
+size = int(input("How big do you want your saw pattern to be?"))
+num = int(input("How many saws do you want?"))
 count = 0
 while True:
     def spike(x,y):
+      turty.forward(50)
       for i in range(100):
+        turty.forward(20 + size)
+        turty.right(75 + size)
         turty.forward(10 + size)
-        turty.right(90 + size)
-        turty.forward(10 + size)
+        turty.stamp()
     spike(1, 1)
     turty.penup()
-    turty.forward(50 + size)
+    turty.forward(50)
     turty.pendown()
     count += 1
+    size = size
     
-    if count == 6:
+    if count == num:
       break
