@@ -85,11 +85,13 @@ print(count_vowels("aeiou"))     # Expected output: 5
 # NOTE: You might need a recursive helper like in exercises 2 and 3.
 
 def reverse_string_recursive_helper(word, index):
-    if index == len(word):
-        return 0
-    return word[index - 1 - index] + reverse_string_recursive_helper(word, index + 1)
+    if index < 0:
+        return ""
+    return word[index] + reverse_string_recursive_helper(word, index- 1)
 def reverse_string(word):
-    return ""
+    if not word:
+        return ""
+    return reverse_string_recursive_helper(word, len(word) - 1)
 
 # Test cases
 print(reverse_string("hello"))    # Expected output: "olleh"
