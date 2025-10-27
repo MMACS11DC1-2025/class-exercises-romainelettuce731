@@ -102,3 +102,42 @@ You'll create a fractal generator that can draw at least one recursive pattern (
 3. Document your process as you go - this will help with the README
 4. Think about edge cases - what happens when parameters are 0 or negative?
 5. Don't forget to include peer review in your final submission
+
+import turtle
+turtle = turtle.Turtle()
+turtle.speed(0)
+turtle.penup()
+turtle.left(90)
+turtle.forward(30)
+size = int(input('How large would you like your shape to be?'))
+memorysize = size
+while True:
+  
+  while size >= 0:
+    def stem(size):
+      turtle.right(90)
+      turtle.forward(30)
+      
+  while size >= 0:
+      def shape(size):
+          turtle.pendown()
+          turtle.forward(30 + size)
+          turtle.right(30)
+          turtle.circle(size)
+          turtle.right(40)
+          turtle.left(180-size)
+          
+        
+          
+          
+      shape(size)
+      size -= 1
+      if size == 0:
+        size = size+memorysize
+        stem(size)
+        break
+      
+  while size >= 0:
+    def stem(size):
+      turtle.right(90)
+      turtle.forward(30)
