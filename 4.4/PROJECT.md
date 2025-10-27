@@ -15,7 +15,7 @@ You'll create a fractal generator that can draw at least one recursive pattern (
 3. **Dictionary**: Store fractal settings in dictionaries (like the tree seasons in the drawTree example)
 4. **Return Values**: Demonstrate understanding of the 'return' statement and recursion by being able to report the total number of recursive calls made
 5. **User Interaction**: Include at least one user input to dynamically generate your graphics
-6. **Documentation**: Complete this README with testing and process explanation
+6. **Documentation**: Complete a README.md file with testing and process explanation
 7. **Peer Review**: Peer feedback to improve quality of work
 
 ## "Gotta Have" Checklist
