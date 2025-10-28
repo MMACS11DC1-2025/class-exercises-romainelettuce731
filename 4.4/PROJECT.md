@@ -105,39 +105,26 @@ You'll create a fractal generator that can draw at least one recursive pattern (
 
 import turtle
 turtle = turtle.Turtle()
+size = int(input('How large would you like your pattern to be?'))
 turtle.speed(0)
 turtle.penup()
-turtle.left(90)
-turtle.forward(30)
-size = int(input('How large would you like your shape to be?'))
-memorysize = size
-while True:
-  
-  while size >= 0:
-    def stem(size):
-      turtle.right(90)
-      turtle.forward(30)
+count = 0
       
-  while size >= 0:
+while size > 0:
       def shape(size):
+          turtle.goto(0, 0)
+          turtle.penup()
+          turtle.forward(10 + size)
+          
+          turtle.right(90)
           turtle.pendown()
-          turtle.forward(30 + size)
-          turtle.right(30)
           turtle.circle(size)
-          turtle.right(40)
-          turtle.left(180-size)
+          turtle.penup()
+          turtle.right(90)
           
-        
-          
-          
+          if size == 0:
+            return 0
       shape(size)
       size -= 1
-      if size == 0:
-        size = size+memorysize
-        stem(size)
-        break
-      
-  while size >= 0:
-    def stem(size):
-      turtle.right(90)
-      turtle.forward(30)
+      count += 1
+print("There were "+str(count)+" recursions.")
