@@ -105,26 +105,47 @@ You'll create a fractal generator that can draw at least one recursive pattern (
 
 import turtle
 turtle = turtle.Turtle()
+#sets the amount of tubes that will be drawn
+tubes = {2:90, 4: 180, 6: 210, 8: 45}
+
+#asks user for input
 size = int(input('How large would you like your pattern to be?'))
+
+tubetrue = False
+while not tubetrue:
+  tubenumber = int(input("How many tubes would you like? (2, 4, 6, or 8)"))
+  if tubenumber in tubes:
+    tubetrue = True
+  else:
+    print("Sorry, that's invalid! Please try inputting a valid number (2, 4, 6, or 8)")
+
+
+#set turtle speed, penup
 turtle.speed(0)
 turtle.penup()
-count = 0
       
-while size > 0:
-      def shape(size):
-          turtle.goto(0, 0)
-          turtle.penup()
-          turtle.forward(10 + size)
-          
-          turtle.right(90)
-          turtle.pendown()
-          turtle.circle(size)
-          turtle.penup()
-          turtle.right(90)
-          
-          if size == 0:
-            return 0
-      shape(size)
-      size -= 1
-      count += 1
-print("There were "+str(count)+" recursions.")
+
+def shape(x):
+    #move the turtle
+    turtle.penup()
+    turtle.forward(10 + x)
+     
+    #draw the amount of tubes
+    turtle.right(tubes[tubenumber])
+    turtle.pendown()
+    turtle.circle(x)
+    turtle.penup()
+    turtle.right(90)
+    
+    #if size is larger than or equal to 0, subtract 0.5 from size
+    if x > 0:
+      x -= 0.5
+      shape(x)
+      
+    #else end drawing if sie is less than 0
+    elif x <= 0:
+      return
+shape(size)
+
+#print number of recursions (times 2 because size is subtracted by 0.5)
+print("There were "+str(size*2)+" recursions.")
