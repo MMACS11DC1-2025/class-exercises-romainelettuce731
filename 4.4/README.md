@@ -11,7 +11,7 @@ Run the program again to create a new pattern!
 
 ---Reasonable Recursion Depth Discussion---
 
-For my project, I stopped the recursion once the size reached 0. This is because allowing the size to go into the negatives would reverse the tube's direction and cause overlapping, creating a pattern that didn't look so good. There is no limit set for a number that may be too high because although the design is really large and takes a long time to draw, it can still create a nice design with enough time and the right sizes.
+For my project, I stopped the recursion once the size reached 0. This is because allowing the size to go into the negatives would reverse the tube's direction and cause overlapping, creating a pattern that didn't look so good. I set the limit to 300 as a maximum because any larger creates a shape you can't see and the program takes an extremely long time to draw it.
 
 ---Test Cases---
 
@@ -27,6 +27,3 @@ I also had other issues that required debugging, but none of them were as large 
 
 One last example is printing the correct number of recursions. Since the number of rings can be subtracted by 0.5, the total number of recursions can vary from 1x to 2x of the size inputted. I tried creating variables to track this, however it didn't work as planned. I decided to then use an if statement for the print statement which matched the previous if statement where if the number of tubes was equal to 2, the print statement would be size times 1. Otherwise, it would print size times 2 amount of recursions.
 
---Peer Review (Marko Trajkovic)---
-
-The first thing I noticed that I liked was the code was very organized and neat, and the comments were dispersed well. I like how there can be more than 1 pattern, which is very creative and something many people did not do. I also like the implimentation of error control, like if you type a number besides 2, 4, 6 or 8 when asking for the number of tube, the program will tell the user that that input is invalid.  However, the Turtle code is quite simple and the pattern is just a bunch of Turtle circles going around eachother, which I feel could be expanded on.
