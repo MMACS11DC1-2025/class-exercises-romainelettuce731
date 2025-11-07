@@ -11,6 +11,8 @@ tubelist = [2,4,6,8]
 #asks user for input
 sizecheck = False
 
+#-------------------------------------------------------------------------
+
 #checks to make sure an integer is inputted
 while not sizecheck:
   numbers = []
@@ -26,6 +28,8 @@ while not sizecheck:
     sizecheck = True
   else:
     print("Please enter a whole integer less than 300")
+
+
 
 #if number of tubes is not 2, 4, 6, or 8, then ask user to retry
 tubecheck = False
@@ -56,7 +60,7 @@ def shape(x):
     turtle.forward(10 + x)
      
     #draw the amount of tubes
-    #reference tubes here
+    #reference dictionary here
     turtle.right(tubes[tubenumber])
     turtle.pendown()
     turtle.circle(x)
@@ -78,7 +82,6 @@ def shape(x):
     elif x <= 0:
       return 0
 shape(size)
-
 #print number of recursions 
 if tubenumber == 2:
   print("There were "+str(size)+" recursions.")
