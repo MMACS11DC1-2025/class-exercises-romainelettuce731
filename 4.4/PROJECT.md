@@ -102,4 +102,7 @@ You'll create a fractal generator that can draw at least one recursive pattern (
 3. Document your process as you go - this will help with the README
 4. Think about edge cases - what happens when parameters are 0 or negative?
 5. Don't forget to include peer review in your final submission
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/HEAD
