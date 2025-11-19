@@ -3,3 +3,6 @@ def is_light(pixel):
         return True
     else:
         return False
+    
+white_pixel = (255, 255, 255)
+print(is_light(white_pixel))
