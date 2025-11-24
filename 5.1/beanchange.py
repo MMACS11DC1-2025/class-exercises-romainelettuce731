@@ -1,3 +1,5 @@
+import time
+t0 = time.time()
 from PIL import Image
 
 def colour(r, g, b):
@@ -23,6 +25,8 @@ purplep = []
 width = file.width
 height = file.height
 
+t1 = time.time()
+
 for x in range(width):
     for y in range(height):
         pixel_r = jb_image[x, y][0]
@@ -45,6 +49,9 @@ for x in range(width):
         elif colour(pixel_r, pixel_g, pixel_b) == "green":
             greenp.append(jb_image[x,y])
 
+
+t2 = time.time()
+
 num_yellow = len(yellow_pixels)
 num_red = len(redp)
 num_blue = len(bluep)
@@ -58,8 +65,16 @@ blue_percent = (num_blue / total_pixels)  * 100
 green_percent = (num_green / total_pixels)  * 100
 purple_percent = (num_purple / total_pixels)  * 100
 
-
 yellow_percent = yellow_ratio * 100
 report = "There are {:.2f}% yellow jellybeans.".format(yellow_percent) + "There are {:.2f}% .red jellybeans.".format(red_percent) + "There are {:.2f}% .green jellybeans.".format(green_percent) + "There are {:.2f}% .blue jellybeans.".format(blue_percent) + "There are {:.2f}% purple jellybeans.".format(purple_percent)
 print(report)
 file.save('output.png', 'png')
+
+t3 = time.time()
+
+module_load = t1-t0
+loop = t2-t1
+calculate = t3-t2
+all = t3-t0
+timings = "It took {:.2f}s to import PIL and open the image, {:.2f}s to perform the loop, and {:.2f}s to calculate the total. It took {:.2f}s in total.".format(module_load, loop, calculate, all)
+print(timings)
