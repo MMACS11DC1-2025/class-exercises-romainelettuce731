@@ -28,7 +28,7 @@ for x in range(width):
         if colour(pixel_r, pixel_g, pixel_b) == "bright":
             brightpix.append(pear_image[x,y])
 
-        if colour(pixel_r, pixel_g, pixel_b) == "dark":
+        elif colour(pixel_r, pixel_g, pixel_b) == "dark":
             darkpix.append(pear_image[x,y])
 
 
@@ -60,3 +60,5 @@ if bright_percent > dark_percent:
 
 elif dark_percent > bright_percent:
     print("The image is dark.")
+
+print(timings)
