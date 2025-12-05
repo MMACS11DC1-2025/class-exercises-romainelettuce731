@@ -4,7 +4,6 @@ import time
 t0 = time.time()
 
 #define the lists that will be used
-uniquecolors = []
 pixelart = []
 pixelartlen = []
 brushart = []
@@ -81,17 +80,24 @@ print("Brush art pixel count = "+str(brushartlen))
 print('\n')
 
 #-----------------------------------------------------------------------------------
-def select_sort(list):
-    for i in range(len(list)):
-        highest_score = list[i]
+#implemented selection sort to sort from highest to lowest pxiel count
+def select_sort(list1, list2):
+    for i in range(len(list1)):
+        highest_score = list1[i]
         highest_index = i
-        for j in range(i+1, len(list)):
-            if list[j] > highest_score:
-                highest_score = list[j]
+        for j in range(i+1, len(list1)):
+            if list1[j]> highest_score:
+                highest_score = list1[j]
                 highest_index = j
-        list[highest_index], list[i] = list[i], list[highest_index]
+        list1[highest_index], list1[i] = list1[i], list1[highest_index]
+        list2[highest_index], list2[i] = list2[i], list2[highest_index]
 
-print(select_sort(pixelartlen))
+select_sort(pixelartlen, pixelart)
+print(pixelartlen, pixelart)
+
+select_sort(brushartlen, brushart)
+print(brushartlen, brushart)
+print('\n')
 
 #print the time results
 print('Loading the functions and modules took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
