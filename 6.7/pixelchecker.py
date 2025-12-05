@@ -3,54 +3,98 @@ import time
 
 t0 = time.time()
 
+#define the lists that will be used
 uniquecolors = []
 pixelart = []
 pixelartlen = []
 brushart = []
 brushartlen = []
 
+#this is the function that counts the amount of unique colours in the image
 def pixel_art_check(imgname):
+    #open image, get the data
     inp_img = Image.open(imgname)
     pixels = inp_img.getdata()
-    uniquecolors = set(pixels)
-    print(len(uniquecolors))
 
-def list_append(imgname, pixcount):
-    if len(uniquecolors) <= 114500:
+    #set creates a list and removes all duplicates within the list
+    uniquecolors = set(pixels)
+    count = (len(uniquecolors))
+    return count
+
+#this is the function that determines which list each piece of data should go in
+def list_append(imgname, pixcount, pixelart, pixelartlen, brushart, brushartlen):
+    #if there are less than 100 000 unique colours in an image,
+    #it is determined to be a pixel art image
+    if pixcount <= 100000:
         pixelart.append(imgname)
         pixelartlen.append(pixcount)
+    #if it has more than 100 000, it is determined to be a brush art image
     else:
         brushart.append(imgname)
         brushartlen.append(pixcount)
 
 #------------------------------------------------------------------------
+#use the functions on each image
+#this function runs through the images and determines the results of the data
+def give_results(img):
+    count = pixel_art_check(img)
+    list_append(img, count, pixelart, pixelartlen, brushart, brushartlen)
 t1 = time.time()
 
-pixel_art_check('6.7/Deltarune-poster.png')
-list_append('6.7/Deltarune-poster.png', len(uniquecolors))
-uniquecolors = []
+give_results('6.7/Deltarune-poster.png')
 t2 = time.time()
 
-pixel_art_check('6.7/Undertale_Cast.png')
-list_append('6.7/Undertale_Cast.png', len(uniquecolors))
-uniquecolors = []
+give_results('6.7/Undertale_Cast.png')
 t3 = time.time()
 
-pixel_art_check('6.7/raiseupyourbat.jpg')
-list_append('6.7/raiseupyourbat.jpg', len(uniquecolors))
+give_results('6.7/asrielfight.webp')
 t4 = time.time()
 
-pixel_art_check('6.7/hatsune-miku.jpg')
-list_append('6.7/hatsune-miku.jpg', len(uniquecolors))
+give_results('6.7/hatsune-miku.jpg')
 t5 = time.time()
 
-pixel_art_check('6.7/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg')
-list_append('6.7/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg', len(uniquecolors))
+give_results('6.7/starrynight.jpg')
 t6 = time.time()
 
-print(pixelart)
-print(brushart)
-print(pixelartlen)
-print(brushartlen)
+give_results('6.7/frisksprite.png')
+t7 = time.time()
+
+give_results('6.7/deltaruneposterart.jpg')
+t8 = time.time()
+
+give_results('6.7/lastsupper.jpg')
+t9 = time.time()
+
+give_results('6.7/titan.jpg')
+t10 = time.time()
+
+give_results('6.7/mario.jpg')
+t11 = time.time()
+
+#print the lists
+print("Pixel art = "+str(pixelart))
+print("Pixel art pixel count = "+str(pixelartlen))
+print('\n')
+
+print("Brush art = "+str(brushart))
+print("Brush art pixel count = "+str(brushartlen))
+print('\n')
+
+#-----------------------------------------------------------------------------------
+def select_sort(list):
+    for i in range(len(list)):
+        highest_score = list[i]
+        highest_index = i
+        for j in range(i+1, len(list)):
+            if list[j] > highest_score:
+                highest_score = list[j]
+                highest_index = j
+        list[highest_index], list[i] = list[i], list[highest_index]
+
+print(select_sort(pixelartlen))
+
+#print the time results
 print('Loading the functions and modules took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
-print('the fourth image took {:.2f} seconds, the fifth image took {:.2f} seconds'.format(t5-t4, t6-t5))
+print('the fourth image took {:.2f} seconds, the fifth image took {:.2f} seconds, the sixth image took {:.2f} seconds, the seventh image took {:.2f} seconds,'.format(t5-t4, t6-t5, t7-t6, t8-t7))
+print('the eigth image took {:.2f} seconds, the ninth image took {:.2f} seconds, and the last image took {:.2f} seconds.'.format(t9-t8, t10-t9, t11-t10))
+print('In total, the program took {:.2f} seconds to run.'.format(t11-t0))
