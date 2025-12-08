@@ -31,7 +31,6 @@ def list_append(imgname, pixcount, pixelart, pixelartlen, brushart, brushartlen)
     else:
         brushart.append(imgname)
         brushartlen.append(pixcount)
-
 #------------------------------------------------------------------------
 #use the functions on each image
 #this function runs through the images and determines the results of the data
@@ -78,7 +77,6 @@ print('\n')
 print("Brush art = "+str(brushart))
 print("Brush art pixel count = "+str(brushartlen))
 print('\n')
-
 #-----------------------------------------------------------------------------------
 #implemented selection sort to sort from highest to lowest pxiel count
 def select_sort(list1, list2):
@@ -94,9 +92,23 @@ def select_sort(list1, list2):
 
 select_sort(pixelartlen, pixelart)
 print(pixelartlen, pixelart)
-
 select_sort(brushartlen, brushart)
 print(brushartlen, brushart)
+print('\n')
+
+#add both lists to a master list from highest unique colours to lowest
+masterlistlen = brushartlen+pixelartlen
+masterlist = brushart+pixelart
+
+#-------------------------------------------------------------------------------------
+
+print("The top 5 images with the most unique colours were:")
+print("# of colours \tFilename")
+
+#use master list to print the top 5 images with the most unique colours
+for i in range(len(masterlist[:5])):
+    print(str(masterlistlen[i]) +'\t\t'+ masterlist[i])
+
 print('\n')
 
 #print the time results
