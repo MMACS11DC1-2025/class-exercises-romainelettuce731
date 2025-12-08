@@ -99,7 +99,28 @@ print('\n')
 #add both lists to a master list from highest unique colours to lowest
 masterlistlen = brushartlen+pixelartlen
 masterlist = brushart+pixelart
+mastersum = 0
+for i in range(len(masterlistlen)):
+    mastersum += masterlistlen[i]
+print(mastersum)
 
+#-------------------------------------------------------------------------------------
+def binary_search(list, targetscore):
+    search_start_index = 0
+    search_end_index = len(list)-1
+    targetscoremin = targetscore - 20000
+    targetscoremax = targetscore + 20000
+    while search_start_index <= search_end_index:
+        midpoint = int((search_start_index+search_end_index)/2)
+        if list[midpoint][0] >= targetscoremin and list[midpoint][0]<= targetscoremax:
+            return list[midpoint][0]
+        elif list[midpoint][0] < targetscore:
+            search_start_index = midpoint+1
+        else:
+            search_end_index = midpoint-1
+    return -1
+
+#print binary_search[masterlistlen, ]
 #-------------------------------------------------------------------------------------
 
 print("The top 5 images with the most unique colours were:")
