@@ -102,25 +102,24 @@ masterlist = brushart+pixelart
 mastersum = 0
 for i in range(len(masterlistlen)):
     mastersum += masterlistlen[i]
-print(mastersum)
 
 #-------------------------------------------------------------------------------------
-def binary_search(list, targetscore):
+def binary_search(data_list, targetscore):
     search_start_index = 0
-    search_end_index = len(list)-1
+    search_end_index = len(data_list)-1
     targetscoremin = targetscore - 20000
     targetscoremax = targetscore + 20000
     while search_start_index <= search_end_index:
         midpoint = int((search_start_index+search_end_index)/2)
-        if list[midpoint][0] >= targetscoremin and list[midpoint][0]<= targetscoremax:
-            return list[midpoint][0]
-        elif list[midpoint][0] < targetscore:
+        if data_list[midpoint] >= targetscoremin and data_list[midpoint]<= targetscoremax:
+            return data_list[midpoint], masterlist[midpoint]
+        elif data_list[midpoint] < targetscore:
             search_start_index = midpoint+1
         else:
             search_end_index = midpoint-1
     return -1
 
-#print binary_search[masterlistlen, ]
+
 #-------------------------------------------------------------------------------------
 
 print("The top 5 images with the most unique colours were:")
@@ -131,6 +130,9 @@ for i in range(len(masterlist[:5])):
     print(str(masterlistlen[i]) +'\t\t'+ masterlist[i])
 
 print('\n')
+binarysearchresult = binary_search(masterlistlen, 150000)
+
+print("The image found withn the binary search range was "+binarysearchresult[1]+". It has "+str(binarysearchresult[0])+" unique colours.")
 
 #print the time results
 print('Loading the functions and modules took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
