@@ -8,6 +8,9 @@ pixelart = []
 pixelartlen = []
 brushart = []
 brushartlen = []
+numlist = []
+
+inputcheck = False
 
 #this is the function that counts the amount of unique colours in the image
 def pixel_art_check(imgname):
@@ -31,6 +34,9 @@ def list_append(imgname, pixcount, pixelart, pixelartlen, brushart, brushartlen)
     else:
         brushart.append(imgname)
         brushartlen.append(pixcount)
+
+
+
 #------------------------------------------------------------------------
 #use the functions on each image
 #this function runs through the images and determines the results of the data
@@ -130,12 +136,14 @@ for i in range(len(masterlist[:5])):
     print(str(masterlistlen[i]) +'\t\t'+ masterlist[i])
 
 print('\n')
-binarysearchresult = binary_search(masterlistlen, 150000)
 
-print("The image found withn the binary search range was "+binarysearchresult[1]+". It has "+str(binarysearchresult[0])+" unique colours.")
+#print the results  of the binary search
+binarysearchresult = binary_search(masterlistlen, 150000)
+print("The first image found within the binary search range (130 000 to 170 000) was "+binarysearchresult[1]+". It has "+str(binarysearchresult[0])+" unique colours.")
+print('\n')
 
 #print the time results
-print('Loading the functions and modules took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
+print('Loading the functions and modules as well as waiting for user input took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
 print('the fourth image took {:.2f} seconds, the fifth image took {:.2f} seconds, the sixth image took {:.2f} seconds, the seventh image took {:.2f} seconds,'.format(t5-t4, t6-t5, t7-t6, t8-t7))
 print('the eigth image took {:.2f} seconds, the ninth image took {:.2f} seconds, and the last image took {:.2f} seconds.'.format(t9-t8, t10-t9, t11-t10))
 print('In total, the program took {:.2f} seconds to run.'.format(t11-t0))

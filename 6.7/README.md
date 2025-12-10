@@ -17,6 +17,10 @@ Images 1, 3, 4, and 6 were determined to be pixel art as they had less than 100 
 What parts take the longest?
 Processing the unique colours within the images takes the longest. It is much faster as the program doesn't have to repeatedly process a nested for loop that handles a 300 000 item list, with each image now taking between 0.10 and 1.00 seconds (except for The Last Supper for some reason?? Which takes about 6.50 seconds on its own??? It's not even that big???). Loading the functions and the modules takes on average less than 0.05 seconds each time.
 
+--Testing--
+
+I tested my code by making sure each image was processed in a similar amount of time. I cleaned up errors and had to fix bugs that incorrectly printed the amount of unique colours within each image. I did this by running multiple tests and changing slight details within the code until I found the error that caused slight discrepancies within the number of unique colours. After this, I was able to fix what had caused the inconsistencies.
+
 --Challenges Faced--
 
 My biggest challenge was optimizing the code. The reason that I do not have nested for loops in my code is because when the code ran with nested for loops, it would take over 9 minutes to process 3 images. This was obivously a huge problem as running all 10 images would most likely take an hour as the images not tested had many more unique colours to test.
