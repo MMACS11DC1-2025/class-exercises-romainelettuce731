@@ -13,6 +13,7 @@ numlist = []
 inputcheck = False
 
 #this is the function that counts the amount of unique colours in the image
+#this is my is_target_data
 def pixel_art_check(imgname):
     #open image, get the data
     inp_img = Image.open(imgname)
@@ -75,14 +76,6 @@ t10 = time.time()
 give_results('6.7/mario.jpg')
 t11 = time.time()
 
-#print the lists
-print("Pixel art = "+str(pixelart))
-print("Pixel art pixel count = "+str(pixelartlen))
-print('\n')
-
-print("Brush art = "+str(brushart))
-print("Brush art pixel count = "+str(brushartlen))
-print('\n')
 #-----------------------------------------------------------------------------------
 #implemented selection sort to sort from highest to lowest pxiel count
 def select_sort(list1, list2):
@@ -97,10 +90,7 @@ def select_sort(list1, list2):
         list2[highest_index], list2[i] = list2[i], list2[highest_index]
 
 select_sort(pixelartlen, pixelart)
-print(pixelartlen, pixelart)
 select_sort(brushartlen, brushart)
-print(brushartlen, brushart)
-print('\n')
 
 #add both lists to a master list from highest unique colours to lowest
 masterlistlen = brushartlen+pixelartlen
@@ -127,7 +117,13 @@ def binary_search(data_list, targetscore):
 
 
 #-------------------------------------------------------------------------------------
+#print the pixel results
+for i in range(5):
+    print('{} had {} unique colours.'.format(pixelart[i], pixelartlen[i])), print('{} had {} unique colours.'.format(brushart[i], brushartlen[i]))
 
+
+#print the top 5 images with most unique colours
+print('\n')
 print("The top 5 images with the most unique colours were:")
 print("# of colours \tFilename")
 
@@ -143,7 +139,13 @@ print("The first image found within the binary search range (130 000 to 170 000)
 print('\n')
 
 #print the time results
-print('Loading the functions and modules as well as waiting for user input took {:.2f} seconds. The first image took {:.2f} seconds, the second image took {:.2f} seconds, the third image took {:.2f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
-print('the fourth image took {:.2f} seconds, the fifth image took {:.2f} seconds, the sixth image took {:.2f} seconds, the seventh image took {:.2f} seconds,'.format(t5-t4, t6-t5, t7-t6, t8-t7))
-print('the eigth image took {:.2f} seconds, the ninth image took {:.2f} seconds, and the last image took {:.2f} seconds.'.format(t9-t8, t10-t9, t11-t10))
-print('In total, the program took {:.2f} seconds to run.'.format(t11-t0))
+print('Loading the functions and modules as well as waiting for user input took {:.3f} seconds. The first image took {:.3f} seconds, the second image took {:.3f} seconds, the third image took {:.3f} seconds,'.format(t1-t0, t2-t1, t3-t2, t4-t3,))
+print('the fourth image took {:.3f} seconds, the fifth image took {:.3f} seconds, the sixth image took {:.3f} seconds, the seventh image took {:.3f} seconds,'.format(t5-t4, t6-t5, t7-t6, t8-t7))
+print('the eigth image took {:.3f} seconds, the ninth image took {:.3f} seconds, and the last image took {:.3f} seconds.'.format(t9-t8, t10-t9, t11-t10))
+print('In total, the program took {:.3f} seconds to run.\n\n'.format(t11-t0))
+
+#print the results of pixel art vs brush art
+print("Here are the results for which images were determined to be pixel art and which ones were brush art.")
+print("Brush art \t\t\t\t\tPixel art")
+for i in range(5):
+    print(brushart[i] +'\t\t\t\t'+ pixelart[i])
